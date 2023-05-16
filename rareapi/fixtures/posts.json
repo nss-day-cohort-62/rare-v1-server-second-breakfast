@@ -1,0 +1,67 @@
+[
+    {
+        "model": "rareapi.post",
+        "pk": 1,
+        "fields": {
+          "user": 1,
+          "category": 3,
+          "title": "Putting the Super in Super Mario Bros",
+          "publication_date": "2023-05-16",
+          "image_url": "https://eletiofe.com/wp-content/uploads/2023/04/359909-the-super-mario-bros-movie-will-be-impossible-to-beat.jpg",
+          "content": "Super Mario Bros, one of the most iconic and beloved video game franchises in history, has made a spectacular leap from console to cinema with a groundbreaking new film. This movie has managed to capture the vibrant, whimsical charm of the Mushroom Kingdom in a way that no other adaptation has before. It's a colorful concoction of nostalgia and innovation, immersing us into the world of Mario and Luigi with stunning animation, memorable performances, and a well-crafted plot that's filled with surprises. The filmmakers have done a commendable job translating the game's iconic characters, power-ups, and worlds to the big screen, infusing every frame with the same sense of joyful adventure that has made the Super Mario games so enduringly popular. \n The heart and soul of the film, just as in the games, is the enduring bond between the mustachioed plumber brothers, Mario and Luigi, who are brought to life through a combination of top-notch voice acting and state-of-the-art animation. Their journey through the Mushroom Kingdom is a roller coaster ride of laughter, suspense, and heartwarming moments that will delight both die-hard fans and newcomers alike. Every scene in the film is a testament to the creators' love for the source material, and their commitment to putting the 'super' in Super Mario Bros. With this movie, the legacy of Super Mario Bros has been beautifully re-imagined for a new generation, demonstrating once again why this franchise has remained at the forefront of popular culture for more than three decades.",
+          "approved": 1
+        }
+      },
+      {
+        "model": "rareapi.post",
+        "pk": 2,
+        "fields": {
+          "user": 1,
+          "category": 2,
+          "title": "Making Miyazaki Magic On Stage",
+          "publication_date": "2023-04-03",
+          "image_url": "https://legendary-digital-network-assets.s3.amazonaws.com/wp-content/uploads/2023/02/08100339/Chihiro-and-Haku-dragon-from-Spirited-Away-Stage-Play.jpeg",
+          "content": "Transposing the enchanting world of Hayao Miyazaki's masterpiece, Spirited Away, from animation to live theater is no small task. Yet, in this new stage adaptation, the team has managed to capture the mystical essence of the original film, creating a spellbinding spectacle that expands our understanding and appreciation of this beloved story. The production has brought to life the richly imagined universe of Chihiro, Haku, and the bathhouse spirits with incredible creativity and craftsmanship, infusing it with a tangible energy that transcends the two-dimensional confines of the screen. Whether it's the elaborate set designs, meticulous costuming, or innovative puppetry, each element works harmoniously to recreate the mesmerizing Miyazaki magic. \n The heart of Spirited Away lies in its poignant exploration of growth, bravery, and friendship, and these themes resonate deeply in the stage adaptation. The performances are imbued with a sincerity that echoes the emotional depth of the film, offering a fresh and immersive perspective on Chihiro’s transformative journey. The play masterfully marries the otherworldly beauty of Miyazaki's vision with the unique intimacy of theater, creating a transcendent experience that is both familiar and entirely new. In bringing the magic of Miyazaki's Spirited Away to the stage, this production pays a beautiful tribute to the original film while also carving out its own space in the world of live theater.",
+          "approved": 1
+        }
+      },
+      {
+        "model": "rareapi.post",
+        "pk": 3,
+        "fields": {
+          "user": 1,
+          "category": 4,
+          "title": "A First for the UK",
+          "publication_date": "2023-03-02",
+          "image_url": "https://i.ytimg.com/vi/lwjQN7jWa0M/maxresdefault.jpg",
+          "content": "With the release of their electrifying new album, \"A Kiss for the Whole World\", Enter Shikari has taken the UK music scene by storm, earning them their first-ever number one spot on the charts. This groundbreaking achievement marks a triumphant moment for the stalwart rock band, who have continuously pushed the boundaries of genre and creativity over their storied career. \"A Kiss for the Whole World\" is a testament to their musical prowess and evolving sound, blending their signature post-hardcore elements with new, experimental inflections. The album's bold lyricism and infectious energy have resonated with both long-time fans and newcomers alike, propelling it to the top of the charts and cementing Enter Shikari's place in the annals of UK rock history. \n The success of \"A Kiss for the Whole World\" is not only a milestone for Enter Shikari, but also a refreshing reminder of the dynamic and diverse landscape of UK music. The album's fearless exploration of themes like unity, compassion, and resilience, delivered through a mix of thunderous riffs, soaring vocals, and pulsating beats, has struck a chord with listeners. This chart-topping achievement is a resounding testament to the band's relentless innovation and commitment to their craft. Enter Shikari's \"A Kiss for the Whole World\" is more than just an album; it's a pioneering musical journey that has ushered in a new era for the band and the UK music scene at large.",
+          "approved": 1
+        }
+      },
+      {
+        "model": "rareapi.post",
+        "pk": 4,
+        "fields": {
+          "user": 1,
+          "category": 4,
+          "title": "Summer is HERE",
+          "publication_date": "2023-06-02",
+          "image_url": "https://www.trolleytours.com/wp-content/uploads/2016/06/nashville-riverfront-park.jpg",
+          "content": "Summer is upon us, and Nashville, Tennessee, fondly known as Music City, is the perfect family-friendly destination to soak up the sun and create lasting memories. Nashville is brimming with activities that cater to all ages and interests. The city's rich history, vibrant music scene, and diverse culinary offerings make it an ideal place to explore and enjoy the warmth of the season. For a dose of nature, families can visit the Centennial Park, home to the full-scale replica of the Parthenon, or explore the beautiful trails and wildlife at the Radnor Lake State Park. Additionally, the Adventure Science Center and the Nashville Zoo offer interactive experiences that combine fun and education, making them perfect for a family outing.\n Music is the heartbeat of Nashville, and summer provides ample opportunities to immerse oneself in its pulsating rhythms. Families can enjoy live performances at the legendary Grand Ole Opry or the Ryman Auditorium, or even experience one of the city's numerous summer music festivals. For food lovers, the city's vibrant culinary scene, from mouthwatering barbecues to globally inspired cuisine, offers a gastronomic journey to remember. And let's not forget the water fun - Nashville Shores Waterpark boasts a myriad of thrilling rides, a massive wave pool, and a beautiful sandy beach, ensuring a day of fun for the entire family. With its rich blend of culture, adventure, and Southern hospitality, Nashville promises a summer filled with unforgettable experiences.",
+          "approved": 1
+        }
+      },
+      {
+        "model": "rareapi.post",
+        "pk": 5,
+        "fields": {
+          "user": 1,
+          "category": 1,
+          "title": "No More Dubious Food!",
+          "publication_date": "2023-05-12",
+          "image_url": "https://www.gamepur.com/wp-content/uploads/2023/05/Tears-of-the-Kingdom-Link-Cooking-Pot.jpg?w=1200",
+          "content": "The immersive world of the hit game Tears of the Kingdom is known for its sweeping landscapes, engaging gameplay, and, notably, its delightful array of in-game dishes. Now, fans of the game can bring this culinary charm into their own kitchens. With the game's detailed cooking system serving as inspiration, players are recreating these virtual recipes in real life, transforming the pixels into palatable plates. Whether it's the hearty 'Village Stew', the sweet 'Royal Berry Tart', or the invigorating 'Adventurer's Elixir', these meals are adding an extra layer of fun and immersion to the gaming experience. \n Recreating these Tears of the Kingdom recipes not only allows players to enjoy the flavors of the game's universe but also adds a unique, interactive dimension to gameplay. The process invites creativity, as each dish can be customized according to personal taste and dietary needs. It's also an opportunity to learn new cooking skills and techniques, making the game's culinary journey educational as well as entertaining. So, bid farewell to dubious food and embrace your inner chef as you step into the gastronomic world of Tears of the Kingdom. This venture is a testament to the power of video games to inspire creativity and transcend the boundaries of the screen, spicing up the kitchen with a dash of gaming magic.",
+          "approved": 1
+        }
+      }
+]

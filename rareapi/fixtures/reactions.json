@@ -1,0 +1,50 @@
+[
+    {
+        "model": "rareapi.reaction",
+        "pk": 1,
+        "fields": {
+            "label": "Like",
+            "image_url":"👍"
+        }
+    },
+    {
+        "model": "rareapi.reaction",
+        "pk": 2,
+        "fields": {
+            "label": "Love",
+            "image_url":"💗"
+        }
+    },
+    {
+        "model": "rareapi.reaction",
+        "pk": 3,
+        "fields": {
+            "label": "Funny",
+            "image_url":"😂"
+        }
+    },
+    {
+        "model": "rareapi.reaction",
+        "pk": 4,
+        "fields": {
+            "label": "Inspired",
+            "image_url":"🤩"
+        }
+    },
+    {
+        "model": "rareapi.reaction",
+        "pk": 5,
+        "fields": {
+            "label": "Angry",
+            "image_url":"😡"
+        }
+    },
+    {
+        "model": "rareapi.reaction",
+        "pk": 6,
+        "fields": {
+            "label": "Sad",
+            "image_url":"😭"
+        }
+    }
+]
