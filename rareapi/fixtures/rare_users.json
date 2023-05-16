@@ -1,0 +1,57 @@
+[
+    {
+        "model": "rareapi.rareuser",
+        "pk": 1,
+        "fields": {
+            "bio": "Rare!",
+            "profile_image_url":"",
+            "created_on": "2023-05-16",
+            "active": 1,
+            "user": 1
+        }
+    },
+    {
+        "model": "rareapi.rareuser",
+        "pk": 2,
+        "fields": {
+            "bio": "Smooth Brain, No Wrinkle",
+            "profile_image_url":"",
+            "created_on": "2023-05-16",
+            "active": 1,
+            "user": 2
+        }
+    },
+    {
+        "model": "rareapi.rareuser",
+        "pk": 3,
+        "fields": {
+            "bio": "It's me! Mario!",
+            "profile_image_url":"",
+            "created_on": "2023-05-16",
+            "active": 1,
+            "user": 3
+        }
+    },
+    {
+        "model": "rareapi.rareuser",
+        "pk": 4,
+        "fields": {
+            "bio": "What up!",
+            "profile_image_url":"",
+            "created_on": "2023-05-16",
+            "active": 1,
+            "user": 4
+        }
+    },
+    {
+        "model": "rareapi.rareuser",
+        "pk": 5,
+        "fields": {
+            "bio": "Hey Ernald!",
+            "profile_image_url":"",
+            "created_on": "2023-05-16",
+            "active": 1,
+            "user": 5
+        }
+    }
+]

@@ -1,0 +1,82 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$YlQNuiB6wVfytU9e2a0wcq$1a2enqS9BliM9vHMMkf8QkbcXE5hn/jaUaTHa1G7RTY=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Rare",
+            "first_name": "Rare",
+            "last_name": "Publishing",
+            "email": "rare@publishing.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-05-16 16:58:17.799122"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$7HxLtABOwQrdikSu2B2XvM$YQJDfHmNlundb8G+vNvLqwGlt7uWx3csIC917qPesHI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Gorthyn",
+            "first_name": "Dylan",
+            "last_name": "Kline",
+            "email": "dylan@kline.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-05-16 16:59:01.331108"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$aAN4G4pTYeBs9sRWhlrx2E$pmyay6vKThstAfiQdm5o2wrAeMvLGSLWRREHuTkRWjE=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "JustJess",
+            "first_name": "Jess",
+            "last_name": "Whyte",
+            "email": "jess@whyte.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-05-16 16:59:55.051766"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$savorhOgpvY7ySgNP3ZEGc$zczXC51wbt0tYTymFyzkJN1c6Jkv7RedwTY+lTuA7uQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Emeka",
+            "first_name": "Emeka",
+            "last_name": "Akoma",
+            "email": "emeka@akoma",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-05-16 17:00:41.052022"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$tsWG371z5Cs3vxsYZ9Alzh$Rv3WDnHQJ1bXy0EFOIbD7c0o29G61EI5QIf9o/MOq/w=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Ernald",
+            "first_name": "Ernie",
+            "last_name": "Fabian",
+            "email": "ernie@fabian.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-05-16 17:01:07.645598"
+        }
+    }
+]
