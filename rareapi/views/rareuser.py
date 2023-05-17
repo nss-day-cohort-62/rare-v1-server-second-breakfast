@@ -1,3 +1,4 @@
+
 import datetime
 from django.http import HttpResponseServerError
 from django.db.models import Q, Count
@@ -6,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import serializers, status
 from rareapi.models import RareUser, Subscription
+from django.contrib.auth.models import User
 
 
 class RareUserView(ViewSet):
@@ -34,6 +36,21 @@ class RareUserView(ViewSet):
         rareusers = RareUser.objects.all()
         serializer = RareUserSerializer(rareusers, many=True)
         return Response(serializer.data)
+    
+    @action(detail=True, methods=['get'])
+    def get(self, request, pk=None):
+        try:
+            user = User.objects.get(pk=pk)
+            rareuser = RareUser.objects.get(user_id=pk)
+
+            user_data = UserSerializer(user).data
+            rareuser_data = RareUserSerializer(rareuser).data
+
+            response_data = {**user_data, **rareuser_data}
+
+            return Response(response_data)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
 
     @action(methods=['post', 'put'], detail=True)
     def subscribe(self, request, pk):
@@ -65,3 +82,10 @@ class RareUserSerializer(serializers.ModelSerializer):
         model = RareUser
         fields = ('id', 'bio', 'profile_image', 'created_on', 'active','subscriptions', 'subscribers')
         depth = 1
+        
+class UserSerializer(serializers.ModelSerializer):
+    """JSON serializer for users"""
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'first_name', 'last_name', 'email')
