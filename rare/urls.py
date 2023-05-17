@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
-from rareapi.views import login_user, register_user, PostView, CategoryView, TagView
+from rareapi.views import login_user, register_user, PostView, CategoryView, TagView, UserView, RareUserView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'category', CategoryView, 'category')
+router.register(r'user', UserView, 'user')
+router.register(r'rareuser', RareUserView, 'rareuser')
 # router.register(r'gametypes', GameTypeView, 'gametype')
 # router.register(r'events', EventView, 'event')
 
@@ -33,4 +35,5 @@ urlpatterns = [
     path('register', register_user),
     path('login', login_user),
     path('', include(router.urls)),
+    path('rareuser/<int:pk>/', RareUserView.as_view({'get': 'get'}), name='rareuser'),
 ]
