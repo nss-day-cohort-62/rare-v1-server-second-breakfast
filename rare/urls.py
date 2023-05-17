@@ -19,11 +19,12 @@ from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
 from rareapi.views import login_user, register_user
+from rareapi.views import TagView
 
 router = routers.DefaultRouter(trailing_slash=False)
 # router.register(r'gametypes', GameTypeView, 'gametype')
 # router.register(r'events', EventView, 'event')
-# router.register(r'games', GameView, 'game')
+router.register(r'tags', TagView, 'tag')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
