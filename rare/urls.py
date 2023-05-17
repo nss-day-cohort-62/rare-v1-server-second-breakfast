@@ -18,15 +18,14 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
-from rareapi.views import login_user, register_user, PostView, CategoryView, TagView
+from rareapi.views import login_user, register_user, PostView, CategoryView, TagView, CommentView
+
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'category', CategoryView, 'category')
-# router.register(r'gametypes', GameTypeView, 'gametype')
-# router.register(r'events', EventView, 'event')
-
 router.register(r'tags', TagView, 'tag')
 router.register(r'posts', PostView, 'post')
+router.register(r'comments', CommentView, 'comment')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
