@@ -9,6 +9,7 @@
         "rareuser"
     ],
     "cSpell.ignoreWords": [
+        "authtoken",
         "viewsets"
     ],
 }
