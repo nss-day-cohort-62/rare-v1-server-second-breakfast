@@ -12,7 +12,7 @@ def login_user(request):
     '''Handles the authentication of a gamer
 
     Method arguments:
-      request -- The full HTTP request object
+        request -- The full HTTP request object
     '''
     username = request.data['username']
     password = request.data['password']
@@ -40,7 +40,7 @@ def register_user(request):
     '''Handles the creation of a new gamer for authentication
 
     Method arguments:
-      request -- The full HTTP request object
+        request -- The full HTTP request object
     '''
 
     # Create a new user by invoking the `create_user` helper method
