@@ -3,4 +3,12 @@
         "--load-plugins=pylint_django",
         "--django-settings-module=rare.settings",
     ],
+    "cSpell.words": [
+        "Ernald",
+        "rareapi",
+        "rareuser"
+    ],
+    "cSpell.ignoreWords": [
+        "viewsets"
+    ],
 }
