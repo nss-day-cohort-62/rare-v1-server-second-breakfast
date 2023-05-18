@@ -35,22 +35,9 @@ class PostView(ViewSet):
             Response -- JSON serialized post instance
         """
         user = RareUser.objects.get(user=request.auth.user)
-        category = Category.objects.get(pk=request.data["category"])
-        # reaction = Reaction.objects.get(pk=request.data["reaction"])
-        # tag = Tag.objects.get(pk=request.data["tag"])
-
-        post = Post.objects.create(
-            title=request.data["title"],
-            publication_date=request.data["publication_date"],
-            image_url=request.data["image_url"],
-            content=request.data["content"],
-            approved=request.data["approved"],
-            user=user,
-            category=category
-            # reaction=reaction,
-            # tag=tag
-        )
-        serializer = PostSerializer(post)
+        serializer = CreatePostSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        post = serializer.save(user=user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):
@@ -83,3 +70,8 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = ('id', 'user', 'category', 'title', 'publication_date', 'image_url', 'content', 'approved', 'reaction', 'tag')
         depth = 2
+
+class CreatePostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ('category', 'title', 'publication_date', 'image_url', 'content', 'approved', 'reaction', 'tag')
