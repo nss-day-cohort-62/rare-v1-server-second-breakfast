@@ -32,6 +32,25 @@ class TagView(ViewSet):
         serialized = TagSerializer(new_tag)
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
+    
+    def update(self, request, pk=None):
+        """Handle PUT requests for a tag
+        
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+
+        tag = Tag.objects.get(pk=pk)
+        tag.label = request.data["label"]
+        tag.save()
+
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+    
+    def destroy(self, request, pk):
+        """Handle DELETE requests for a tag"""
+        tag = Tag.objects.get(pk=pk)
+        tag.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 
 class TagSerializer(serializers.ModelSerializer):
