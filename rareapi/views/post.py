@@ -4,6 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from rareapi.models import Post, RareUser, Category, Tag, Reaction
+from rest_framework.decorators import action
 
 class PostView(ViewSet):
     """Rare posts view"""
@@ -63,6 +64,18 @@ class PostView(ViewSet):
         post = Post.objects.get(pk=pk)
         post.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    @ action(methods=["get"], detail=False)
+    def myposts(self, request):
+        user = RareUser.objects.get(user=request.auth.user)
+        posts = Post.objects.filter(user=user)
+
+        try:
+        # if posts.user == user:
+            serializer = PostSerializer(posts, many=True)
+            return Response(serializer.data)
+        except Post.DoesNotExist:
+            return Response({"message": "This post does not belong to the authenticated user."}, status=404)
 
 class PostSerializer(serializers.ModelSerializer):
     """JSON serializer for posts"""
