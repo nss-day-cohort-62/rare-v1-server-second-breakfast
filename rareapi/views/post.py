@@ -25,7 +25,16 @@ class PostView(ViewSet):
         Returns:
             Response -- JSON serialized list of posts
         """
-        posts = Post.objects.all()
+        posts = []
+
+        if request.auth.user:
+            posts = Post.objects.all()
+
+            if "author" in request.query_params:
+                posts = Post.objects.filter(user__user__username__icontains=request.query_params['author'])
+            if "category" in request.query_params:
+                posts = Post.objects.filter(category__label__icontains=request.query_params['category'])
+
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
