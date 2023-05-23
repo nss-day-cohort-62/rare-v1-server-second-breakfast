@@ -1,5 +1,6 @@
 """View module for handling requests about posts"""
 from django.http import HttpResponseServerError
+from django.db.models import Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
@@ -18,6 +19,34 @@ class PostView(ViewSet):
         post = Post.objects.get(pk=pk)
         serializer = PostSerializer(post)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+        # def list(self, request):
+        # """Handle GET requests to get all games
+
+        # Returns:
+        #     Response -- JSON serialized list of games
+        # """
+        # gamer = Gamer.objects.get(user=request.auth.user)
+        # # games = Game.objects.all()
+        # games = Game.objects.annotate(
+        #     event_count=Count('events'),            user_event_count=Count('events', filter=Q(events__organizer=gamer)
+        # ))
+
+        # game_type = request.query_params.get('type', None)
+        # if game_type is not None:
+        #     games = games.filter(game_type_id=game_type)
+        
+
+        # search = request.query_params.get('search', None)
+        # if search is not None:
+        #     Game.object.filter(
+        #         Q(title__startswith=search) |
+        #         Q(maker__startswith=search)
+        #     )
+
+        # serializer = GameSerializer(games, many=True)
+        # return Response(serializer.data, status=status.HTTP_200_OK)
     
     def list(self, request):
         """Handle GET requests to get all posts
@@ -30,10 +59,20 @@ class PostView(ViewSet):
         if request.auth.user:
             posts = Post.objects.all()
 
-            if "author" in request.query_params:
-                posts = Post.objects.filter(user__user__username__icontains=request.query_params['author'])
-            if "category" in request.query_params:
-                posts = Post.objects.filter(category__label__icontains=request.query_params['category'])
+            author = request.query_params.get('author', None)
+            if author is not None:
+                posts = posts.filter(user_id=author)
+                
+            category = request.query_params.get('category', None)
+            if category is not None:
+                posts = posts.filter(category_id=category)
+
+            search = request.query_params.get('search', None)
+            if search is not None:
+                posts = posts.filter(
+                    Q(title__icontains=search) |
+                    Q(content__icontains=search)
+                )
 
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -47,10 +86,10 @@ class PostView(ViewSet):
         user = RareUser.objects.get(user=request.auth.user)
         serializer = CreatePostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        post = serializer.save(user=user)
+        serializer.save(user=user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def update(self, request, pk):
+    def update(self, request, pk=None):
         """Handle PUT requests for a post
 
         Returns:
@@ -58,12 +97,13 @@ class PostView(ViewSet):
         """
 
         post = Post.objects.get(pk=pk)
+        category = Category.objects.get(pk=request.data["category"])
         post.title = request.data["title"]
         post.publication_date = request.data["publication_date"]
         post.image_url = request.data["image_url"]
         post.content = request.data["content"]
         post.approved = request.data["approved"]
-        post.category = Category.objects.get(pk=request.data["category"])
+        post.category = category
 
         post.save()
 
