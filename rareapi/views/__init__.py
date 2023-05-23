@@ -5,4 +5,5 @@ from .category import CategoryView
 from .comment import CommentView
 from .rareuser import RareUserView
 from .user import UserView
+from .post_tag import PostTagView
 

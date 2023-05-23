@@ -21,14 +21,12 @@ class CommentView(ViewSet):
 
     def create(self, request):
         """Handle POST request for comment"""
-        comment = Comment()
-        comment.post = Post.objects.get(pk=request.data['post'])
-        comment.author = RareUser.objects.get(user=request.auth.user)
-        comment.content = request.data['content']
-        comment.created_on = request.data['created_on']
-        comment.save()
-        serialized = CommentSerializer(comment)
-        return Response(serialized.data, status=status.HTTP_201_CREATED)
+
+        author = RareUser.objects.get(user=request.auth.user)
+        serializer = CreateCommentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(author=author)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
         """Handle PUT request for update"""
@@ -53,3 +51,9 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('id', 'post', 'author', 'content','created_on')
+        depth = 2
+
+class CreateCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('id', 'post', 'content', 'created_on')
