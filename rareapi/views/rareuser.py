@@ -1,12 +1,12 @@
 import datetime
 from django.http import HttpResponseServerError
 from django.db.models import Q, Count
+from django.contrib.auth.models import User
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import serializers, status
 from rareapi.models import RareUser, Subscription
-from django.contrib.auth.models import User
 
 
 class RareUserView(ViewSet):
@@ -35,9 +35,10 @@ class RareUserView(ViewSet):
         rareusers = RareUser.objects.all()
         serializer = RareUserSerializer(rareusers, many=True)
         return Response(serializer.data)
-    
+
     @action(detail=True, methods=['get'])
     def get(self, request, pk=None):
+        """Get request on rare users"""
         try:
             user = User.objects.get(pk=pk)
             rareuser = RareUser.objects.get(user_id=pk)
@@ -81,7 +82,7 @@ class RareUserSerializer(serializers.ModelSerializer):
         model = RareUser
         fields = ('id', 'bio', 'created_on', 'active','subscriptions', 'subscribers')
         depth = 1
-        
+
 class UserSerializer(serializers.ModelSerializer):
     """JSON serializer for users"""
 

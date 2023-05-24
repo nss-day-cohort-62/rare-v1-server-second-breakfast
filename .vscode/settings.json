@@ -6,7 +6,9 @@
     "cSpell.words": [
         "Ernald",
         "rareapi",
-        "rareuser"
+        "rareuser",
+        "myposts",
+        "posttags"
     ],
     "cSpell.ignoreWords": [
         "authtoken",

@@ -4,8 +4,8 @@ from django.db.models import Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from rareapi.models import Post, RareUser, Category, Tag, Reaction
 from rest_framework.decorators import action
+from rareapi.models import Post, RareUser, Category, Tag, Reaction
 
 class PostView(ViewSet):
     """Rare posts view"""
@@ -20,34 +20,6 @@ class PostView(ViewSet):
         serializer = PostSerializer(post)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
-        # def list(self, request):
-        # """Handle GET requests to get all games
-
-        # Returns:
-        #     Response -- JSON serialized list of games
-        # """
-        # gamer = Gamer.objects.get(user=request.auth.user)
-        # # games = Game.objects.all()
-        # games = Game.objects.annotate(
-        #     event_count=Count('events'),            user_event_count=Count('events', filter=Q(events__organizer=gamer)
-        # ))
-
-        # game_type = request.query_params.get('type', None)
-        # if game_type is not None:
-        #     games = games.filter(game_type_id=game_type)
-        
-
-        # search = request.query_params.get('search', None)
-        # if search is not None:
-        #     Game.object.filter(
-        #         Q(title__startswith=search) |
-        #         Q(maker__startswith=search)
-        #     )
-
-        # serializer = GameSerializer(games, many=True)
-        # return Response(serializer.data, status=status.HTTP_200_OK)
-    
     def list(self, request):
         """Handle GET requests to get all posts
 
@@ -62,7 +34,7 @@ class PostView(ViewSet):
             author = request.query_params.get('author', None)
             if author is not None:
                 posts = posts.filter(user_id=author)
-                
+
             category = request.query_params.get('category', None)
             if category is not None:
                 posts = posts.filter(category_id=category)
@@ -108,14 +80,16 @@ class PostView(ViewSet):
         post.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-    
+
     def destroy(self, request, pk):
+        """Delete request for a post"""
         post = Post.objects.get(pk=pk)
         post.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     @ action(methods=["get"], detail=False)
     def myposts(self, request):
+        """Get method for my posts"""
         user = RareUser.objects.get(user=request.auth.user)
         posts = Post.objects.filter(user=user)
 
