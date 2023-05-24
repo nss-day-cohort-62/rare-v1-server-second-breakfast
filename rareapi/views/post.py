@@ -88,7 +88,12 @@ class PostView(ViewSet):
         post.content = request.data["content"]
         post.approved = request.data["approved"]
         post.category = category
-        post.tag.set(request.data['tag'])
+
+        post.tag.clear()
+
+        for tag_id in request.data['tag']:
+            tag = Tag.objects.get(pk=tag_id)
+            post.tag.add(tag)
 
         post.save()
 
