@@ -39,6 +39,17 @@ class PostView(ViewSet):
             if category is not None:
                 posts = posts.filter(category_id=category)
 
+            # tag = request.query_params.get('tag', None)
+            # if tag is not None:
+            #     posts = posts.filter(tag_id=tag)
+
+            tag = request.query_params.get('tag', None)
+            if tag is not None:
+                tag_array = [int(t) for t in tag.split(',')]
+                for tag_id in tag_array:
+                    posts = posts.filter(tag=tag_id)
+
+
             search = request.query_params.get('search', None)
             if search is not None:
                 posts = posts.filter(
@@ -58,7 +69,8 @@ class PostView(ViewSet):
         user = RareUser.objects.get(user=request.auth.user)
         serializer = CreatePostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(user=user)
+        saved_post = serializer.save(user=user)
+        saved_post.tag.set(request.data['tag'])
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
@@ -76,6 +88,7 @@ class PostView(ViewSet):
         post.content = request.data["content"]
         post.approved = request.data["approved"]
         post.category = category
+        post.tag.set(request.data['tag'])
 
         post.save()
 
@@ -98,7 +111,7 @@ class PostView(ViewSet):
             serializer = PostSerializer(posts, many=True)
             return Response(serializer.data)
         except Post.DoesNotExist:
-            return Response({"message": "This post does not belong to the authenticated user."}, status=404)
+            return Response({"message": "This post isn't yours, authenticated user."}, status=404)
 
 class PostSerializer(serializers.ModelSerializer):
     """JSON serializer for posts"""

@@ -16,6 +16,11 @@ class CommentView(ViewSet):
     def list(self, request):
         """Handle GET request for all comments"""
         comments = Comment.objects.all()
+
+        post_id = request.query_params.get('post_id', None)
+        if post_id is not None:
+            comments = comments.filter(post_id=post_id)
+
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
@@ -50,7 +55,7 @@ class CommentView(ViewSet):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('id', 'post', 'author', 'content','created_on')
+        fields = ('id', 'post_id', 'author', 'content','created_on')
         depth = 2
 
 class CreateCommentSerializer(serializers.ModelSerializer):
