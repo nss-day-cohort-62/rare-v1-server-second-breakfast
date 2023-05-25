@@ -1,11 +1,11 @@
 """View module for handling requests about posts"""
 from django.http import HttpResponseServerError
-from django.db.models import Q
+from django.db.models import Q, Value
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from rest_framework.decorators import action
-from rareapi.models import Post, RareUser, Category, Tag, Reaction
+from rareapi.models import Post, RareUser, Category, Tag, Subscription
 
 class PostView(ViewSet):
     """Rare posts view"""
@@ -26,10 +26,13 @@ class PostView(ViewSet):
         Returns:
             Response -- JSON serialized list of posts
         """
-        posts = []
+        user = RareUser.objects.get(user=request.auth.user)
 
-        if request.auth.user:
-            posts = Post.objects.all()
+        ## post.user.subscriptions.author is included in user.subscriptions
+
+        if user:
+            subscribed_authors = user.subscriptions.filter(ended_on__isnull=True).values_list('author', flat=True)
+            posts = Post.objects.filter(user__id__in=subscribed_authors )
 
             author = request.query_params.get('author', None)
             if author is not None:
@@ -39,16 +42,18 @@ class PostView(ViewSet):
             if category is not None:
                 posts = posts.filter(category_id=category)
 
-            # tag = request.query_params.get('tag', None)
-            # if tag is not None:
-            #     posts = posts.filter(tag_id=tag)
-
             tag = request.query_params.get('tag', None)
             if tag is not None:
                 tag_array = [int(t) for t in tag.split(',')]
                 for tag_id in tag_array:
                     posts = posts.filter(tag=tag_id)
 
+            # subscribedPosts = request.query_params.get('subscribedPosts', None)
+            # if subscribedPosts is not None:
+            #     subscriptions = Subscription.objects.filter(follower_id=user, ended_on=None)
+            #     for subscription in subscriptions:
+            #         author = RareUser.objects.get(user = author.id)
+            #  subscriptionPosts = posts.filter(user = author.id)
 
             search = request.query_params.get('search', None)
             if search is not None:
@@ -105,6 +110,14 @@ class PostView(ViewSet):
         post.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
+    @ action(methods=["get"], detail=False)
+    def allposts(self, request):
+        """Fetch all posts regardless of subscription"""
+        posts = Post.objects.all()
+
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
     @ action(methods=["get"], detail=False)
     def myposts(self, request):
         """Get method for my posts"""
