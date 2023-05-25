@@ -17,5 +17,5 @@ urlpatterns = [
     path('register', register_user),
     path('login', login_user),
     path('', include(router.urls)),
-    path('rareuser/<int:pk>/', RareUserView.as_view({'get': 'get'}), name='rareuser'),
+    # path('rareuser/<int:pk>/', RareUserView.as_view({'get': 'get'}), name='rareuser'),
 ]
